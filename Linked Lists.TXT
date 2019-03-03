@@ -1,0 +1,62 @@
+Linked List
+
+Simple Data Structure. Sequence of elements. Can contain any type of data. Can be sorted or unsorted. duplicates or unique. In an array, the elements are indexed. In a linked list, youhave to start with the head and work your way through to the 4th element. Linear time o(n) which is slower. Advantage is insertion and deletion can be quick. Appending elements to the end would require going through the end of the list and inserting it there. 
+
+Doubly Linked List can move forward and backward.
+
+public class Node
+{
+	Node next;
+	int data;
+	
+	public Node(int data)//constructor
+	{ this.data = data; }
+
+
+}
+
+public class LinkedList 
+{
+	Node head;
+	
+	public void append (int data)//takes value
+	{
+		if (head == null)// if no head, create the head. 
+		{
+			head = newNode(data);
+		}
+
+		Node current = this;//pointer for current node
+		while (current.next != null)//checks if end of next list
+		{
+			current = current.next;
+		}
+		current.next = newNode(data);//create new node
+	}
+
+
+	public void prepend(int data) 
+	{
+		Node newHead = new Node (data);
+		newHead.next = head;
+		head = newHead;
+	}
+
+	public void deleteWithValue(int data) 
+	{
+		if (head == null) return;
+
+		Node current = head;
+		while (current.next != nulle)
+		{
+			if (current.next.data == data)
+			{
+				current.next = current.next.next;
+				return;
+			}
+			current = current.next;
+		}
+	}
+	
+	
+		
