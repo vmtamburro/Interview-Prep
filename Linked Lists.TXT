@@ -44,12 +44,17 @@ public class LinkedList
 
 	public void deleteWithValue(int data) 
 	{
-		if (head == null) return;
-
-		Node current = head;
-		while (current.next != nulle)
+		if (head == null) return; 
+		if (head.data == data) //if deleted is head. 
 		{
-			if (current.next.data == data)
+			head = head.next;
+			return;
+		}
+
+		Node current = head;//current method
+		while (current.next != null)//walk through as long as we are not at end
+		{
+			if (current.next.data == data)//walk around element. 
 			{
 				current.next = current.next.next;
 				return;
@@ -57,6 +62,7 @@ public class LinkedList
 			current = current.next;
 		}
 	}
+}
 	
 	
 		

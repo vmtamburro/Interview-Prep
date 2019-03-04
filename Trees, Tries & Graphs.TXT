@@ -1,0 +1,208 @@
+/*Trees
+
+Root node at the very top, and it has child nodes, and those child nodes have nodes. Usually Binary Trees, Two child nodes for each node. Binary Search Tree. On any sub tree, the left nodes are less than the root node, which are lest than all of the right nodes.
+
+Inserts work much like finding an element works. Find a null node, and insert the new element properly. If you get elements in a certain order, you can get very unbalanced.
+
+Balanced vs. Unbalanced. Can get a structure that looks less like a tree, and more like a list. Already built into a lot of programming lanugages. Assume that you have a balanced tree.
+
+Traversing- how you walk through a tree. Inorder, Preorder and Postorder.
+
+Inorder- Left, root, then right
+
+Preorder- Root, left then right
+
+Postorder- Left, right then root.
+
+
+Usually for binary you see inorder, because things are printed in order.
+
+*/
+
+class Node
+{
+	Node left, right;
+	int data;
+	public Node(int data )
+	{ this.data = data; }
+	
+	public void insert(int value)
+	{
+		if (value <= data)
+			left = new Node(value);
+		else
+			left.insert(value);
+		else
+		{
+			if (right == null)
+				right = new Node(value);
+			else
+				right.insert(value);
+		}
+	}
+	
+	public bool contains(int value)//recursive function. 
+	{
+		if(value == data)
+			return true;
+		else if (value < data)
+		{
+			if( left == null)
+				reutrn false;
+			else	
+				return left.conains(value);
+		}
+		else
+		{
+			if(right == null)
+				return false;
+			else
+				return right.contains(value);
+		}
+	}
+
+
+	public void printInOrder()//inorder traversal.
+	{
+		if(left != null)
+			left.printInOrder();
+		System.out.printIn(data);
+		if(right != null) 
+			right.printInOrder();
+	}
+	//preorder Traversal, root gets printed first
+	//postorder Traversal, root gets printed last
+
+
+}
+//******************************************************************
+
+/* Tries, a type of tree used to store charachters. Possibly a good data structure for a scrabble game. Dictionary. 
+
+*/
+
+//******************************************************************
+
+class Node
+{
+	//instead of a binary, tree for left and right
+	//use some type of vector or array
+
+	HashMap<Char, Node> children;
+	boolean isCompleteWord;
+}
+
+//Don't look up each prefix from the root. Build on the past cells. Keep state within 
+//The trie, or return the node back to the caller. 
+
+
+//******************************************************************
+
+/*Graphs (Breadth First and Depth First)
+
+Figure out if there is a path from one node to another. First one is more simplistic. Depth First Search (DFS) Initial node that is called s. hasPath(s, t)? recursive function until you find an aswer. Called a depth first search because you go deep into a node before you ask any children. The issue with this is you get deep in the node before you find a faster connection. Rcursive function. Need a flag or some way of preventing infinite loops.
+
+Often would prefer Breadth First Search (BFS) Goes Broad to neighborhood before going deep. 
+queue a, b. Talk on a high level about the implementation. Iterative, using some sort of a queue.*/
+
+//******************************************************************
+
+
+public class Graph
+{
+	private HashMap<Integer, Node> nodeLookup = new HashMap<Integer, Node>();
+
+	public static class Node 
+	{
+		private int id;
+		LinkedList<Node> adjacent = new LinkedList<Node>();
+		private Node(int id)
+		{ this.id = id; }
+	}
+
+
+	private Node getNode(int id) {<-->}
+	public void addEdge(int source, it destination) {
+		Node s = getNode(source);
+		Node d = getNode(destination);
+		s.adjacent.add(d);
+	}
+	
+	//Depth First Search
+	public boolean hasPathDFS(int source, int destination)
+	{
+		Node s = getNode(source);
+		Node d = getNode(destination);
+		//Creating hash set of Id's of nodes already visited
+		//Replacement of a flag. 
+		HashSet<Integer> visited = new HashSet<Integer>();
+		return hasPathDFS(s, d, visited);
+	}
+	
+	//Depth First Search	
+	private boolean hasPathDFS (Node source, Node destination, HashSet<Integer> visited)
+	{
+		//if visited, there is no path
+		if(visited.contains(source.id))
+			return false;
+		//mark node as visited
+		visited.add(source.id);
+		//if at the destination, there is a path
+		if(source == destination)
+			return true;
+		//otherwise check all children.
+		for (Node child : source.adjacent)
+		{
+			//repeat for children, recursive function
+			if(hasPathDfs(child, destination visited)
+				return true;
+		}
+		//no path to destination
+		return false;
+	}
+
+	//Breadth First Search
+	public boolean hasPathBFS(int source, int destination) 
+	{
+		return hasPathBFS(getnode(source), getNode(destination));
+	}
+	
+	//Breadth First Search
+	private boolean hasPathBFS(Node source, Node destination)
+	{
+		//Linked list of next to visit. 
+		LinkedList<Node> nextToVisit = new LinkedList<Node>();
+		HashSet<Integer> visited = new HashSet<Integer>();
+
+		//First visit the source
+		nextToVisit.add(source);
+
+		//If not empty, keep going
+		while (!nextToVisit.isEmpty())
+		{
+			//Remove the first node in the list
+			Node node = nextToVisit.remove();	
+			if(node == destination)
+				return true;
+			
+			//visited checking
+			if(visited.contains(node.id))
+				continue;
+			visited.add(node.id);
+
+			//add these as next to visit.
+			for(Node child : node.adjacent)
+				nextToVisit.add(child);
+		}
+
+		If nothing, there is no path to destination. 
+		return false;
+	}
+}
+	
+
+
+
+
+
+		 
