@@ -1,0 +1,21 @@
+Hash Tables
+
+The most useful data structure for interview questions. For any problem, have hash tables at the top of your mind. A key value lookup. Given a key, associating a value with it for very quick lookups. Associate someones name with some information about them. Give Data associated with Mary, and have that information returned immediately. Anything can be associated as long as you have a hash funciton. 
+
+Store the objects in an array. A hash function takes a string, turns it into some sort of integer, and maps that into some sort of hash code, and then into the array of the index. Two different strings could have the same hash code. Infinite number of strings, but a finite number of hash codes. Two things with different hash codes can map to the same index (collision) a solution to this is chaining. If there are collisions, store them into a linked list. Array of a linked list of people. Linked list contains the person object, and also the keys as well. 
+
+
+class HashTable{
+	linkedList[]data; //linked list of person object
+
+	boolean put(string key, person value)
+	{	int hashcode =getHashCode(key);
+		int index = converToIndex(hashCode);
+		linkedList list = data[index];
+		list insert(key value);
+	}
+
+Constant time O(1) for a "good" hashtable (Generally what we assume for interviews)
+
+O(n) for a terrible hash table. (lots of collisions, etc)
+

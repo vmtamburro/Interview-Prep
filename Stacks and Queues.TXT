@@ -1,0 +1,88 @@
+Stacks and Queues
+
+Linear Data Structures, Flexible Size. Difference in how elements are removed.
+
+Stack LIFO (Last in first out)
+Queue FIFO (First in first out)
+
+//*******************************
+
+public static class Queue
+{
+	//keeps a pointer or variable that reperesents the data
+	private static class Node
+	{
+		private int data;
+		private Node next;
+		private Node(int data) 
+		{ this.data = data }
+	}
+	
+	private Node head;//remove from the head
+	private Node tail;//add things here
+	
+	public boolean isEmpty
+	{
+		return head == null;
+	}
+	public int peek() 
+	{
+		return head.data;	
+	}
+	public void add(int data) 
+	{
+		Node node = new Node(data);
+		if(tail!= null)
+			tail.next = node;
+		tail = node;
+		if(head == null)
+			head = node;	
+	}
+	public int remove() 
+	{
+		int data = head.data;
+		head = head.next;
+		if(head == null)
+			tail = null;
+		return data;
+	}
+
+}
+
+public static class Stack
+{
+	//keeps a pointer or variable that reperesents the data
+	private static class Node
+	{
+		private int data;
+		private Node next;
+		private Node(int data) 
+		{ this.data = data }
+	}
+	
+	private Node top;
+	
+	public bool isEmpty() 
+	{
+		return top == null;
+	}
+	public int peek()
+	{
+		return top.data; //skipped null pointer checks
+	}
+	public void push(int data)
+	{
+		Node node = newNode(data_;
+		node.next = top;
+		top = node;
+	}
+	public int pop()
+	{
+		int data = top.data;
+		top = top.next;
+		return data;
+	}
+
+}
+
+
